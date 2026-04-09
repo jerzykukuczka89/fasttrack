@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>위치 관제 웹 프로토타입</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>위치 관제 웹 프로토타입</h1>
+      <p>세종 도심 샘플 데이터(1분 간격) 기반 동선/체류 시각화</p>
+    </header>
+
+    <main class="layout">
+      <section id="map" aria-label="세종 도심 지도"></section>
+
+      <aside class="panel">
+        <article class="card">
+          <h2>사건 요약</h2>
+          <p><strong>대상:</strong> 피의자 A</p>
+          <p><strong>공소시효 만료:</strong> <span id="limitationDate"></span></p>
+          <p><strong>체포영장 기한:</strong> <span id="arrestDate"></span></p>
+          <p><strong>구속영장 기한:</strong> <span id="detentionDate"></span></p>
+        </article>
+
+        <article class="card">
+          <h2>10분 이상 체류 구간</h2>
+          <ul id="stayList" class="stay-list"></ul>
+          <p id="emptyStay" class="muted" hidden>감지된 체류 구간이 없습니다.</p>
+        </article>
+
+        <article class="card">
+          <h2>문자 데이터 입력(수동)</h2>
+          <p class="muted">
+            한 줄에 1개 위치. 형식 1: <code>2026-04-09 14:00,36.50418,127.26192</code>
+            <br />
+            형식 2: <code>[Web발신][9]72740801[0409-15:00]대전광역시 서구 월평동 760</code>
+          </p>
+          <textarea id="smsInput" class="sms-input" spellcheck="false"></textarea>
+          <div class="input-actions">
+            <button id="loadSampleBtn" type="button">샘플 넣기</button>
+            <button id="applySmsBtn" type="button">동선 반영</button>
+          </div>
+          <p id="parseResult" class="muted"></p>
+        </article>
+
+        <article class="card caution">
+          본 프로토타입은 적법한 권한과 절차 하의 공공업무 지원 용도로만 사용하세요.
+        </article>
+      </aside>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="app.js"></script>
+  </body>
+</html>
